@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Sedan:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-Sedan: 'Sedan';
+  --font-Outfit: 'Outfit';
+  --font-SpaceMono: 'Space Mono';
+}
+
+iconify-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+ }
