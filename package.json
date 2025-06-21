@@ -9,8 +9,16 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.2.5",
     "@tailwindcss/vite": "^4.1.4",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
     "astro": "^5.7.4",
+    "axios": "^1.10.0",
+    "motion": "^12.18.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-github-calendar": "^4.5.7",
     "rough-notation": "^0.5.1",
     "tailwindcss": "^4.1.4"
   }

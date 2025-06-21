@@ -1,0 +1,45 @@
+{
+    "projects": [
+        {
+            "name": "Ranked - [1v1 DSA Battles]",
+            "description": "A competitive coding platform that matches users in real-time 1v1 DSA battles",
+            "type": "Team of 4",
+            "responsibilities": [
+                "Designed and implemented the entire backend, including APIs for matchmaking, code submission, judging, result processing, and rating updates.",
+                "Set up and integrated Judge0 (an open-source code execution engine) in an AWS EC2 instance to evaluate user-submitted code in real-time.",
+                "Utilized Redis for implementing a real-time matchmaking queue and leaderboard, using data structures like Sorted Sets for performance-critical ranking operations."
+            ],
+            "liveLink": "https://ranked-80.vercel.app",
+            "githubLink": "https://github.com/Shreehari-Acharya/Ranked",
+            "stack": [
+                "React.js",
+                "Express.js",
+                "Redis",
+                "PostgreSQL",
+                "Docker",
+                "Judge0",
+                "AWS (EC2)"
+            ]
+        },
+        {
+            "name": "Dhidvara - [NextGen AI Terminal]",
+            "description": "A warp like terminal that gives command suggestions and executes commands using AI.",
+            "type": "Solo Project",
+            "responsibilities": [
+                "Developed a terminal emulator using electron and React.js.",
+                "Integrated LLMs to provide real-time command suggestions while typing using Groq.",
+                "Implemented task automation via natural language prompts using @ commands.",
+                "Designed a custom terminal interface with support for AI ghost text and PTY handling."
+            ],
+            "liveLink": "https://dhidvara.vercel.app",
+            "githubLink": "https://github.com/Shreehari-Acharya/Dhidvara",
+            "stack": [
+                "React.js",
+                "Electron.js",
+                "Groq AI inference",
+                "xterm.js",
+                "Node.js"
+            ]
+        }
+    ]
+}

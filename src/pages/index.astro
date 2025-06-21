@@ -1,53 +1,55 @@
 ---
 import "../styles/global.css";
 import Socials from "../components/socials.astro";
+import TabSection from "../components/tabs";
 ---
 
-<html lang="en">
+<html lang="en" class="overflow-y-scroll scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"
+		></script>
 		<meta name="generator" content={Astro.generator} />
 		<title>Shreehari R Acharya</title>
 	</head>
-	<body class="bg-slate-950 p-15 font-Outfit">
+	<body
+		class="bg-slate-950 p-10 font-JetBrainsMono flex flex-col items-center gap-10 text-slate-200/90"
+	>
 		<div class="flex justify-center items-center gap-16">
-			<img 
-				src="https://placehold.co/150" 
-				alt="photo" 
+			<img
+				src="https://placehold.co/150"
+				alt="photo"
 				class="rounded-full border-4 border-slate-100"
-			>
-			<div>
+			/>
+			<div class="flex flex-col items-start gap-2">
 				<h1 class="text-5xl text-slate-200 font-Sedan">
 					Shreehari R Acharya
 				</h1>
-				<p class="text-slate-400 text-xl font-light py-4 font-SpaceMono">
-					 When I dont know something,<br>I know where to
-					 	<span 
-					 		id="customUnderline"
-					 	>
-					 	look for it
-						</span>
+				<p class="text-xl font-light py-4">
+					<span id="customUnderline" class="text-slate-300"> <span class="font-semibold">Forging</span> products with code</span>
 				</p>
 				<Socials />
 			</div>
-			
 		</div>
+
+		<TabSection client:visible/>
+
 		<script>
-			import { annotate } from 'rough-notation';
-			const e = document.querySelector('#customUnderline');
+			import { annotate } from "rough-notation";
+			const e = document.querySelector("#customUnderline");
 			if (e instanceof HTMLElement) {
-				const annotation = annotate(e, { 
-					type: 'underline',
-					color: '#f9a826',
-					animationDuration: 1000,
-					strokeWidth: 4,
-					});
+				const annotation = annotate(e, {
+					type: "underline",
+					color: "#f9a826",
+					animationDuration: 2000,
+					strokeWidth: 2,
+				});
 				setTimeout(() => {
 					annotation.show();
-				}, 4000);
+				}, 2000);
 			}
 		</script>
 	</body>

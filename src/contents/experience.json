@@ -1,0 +1,26 @@
+{
+    "experiences": [
+        {
+            "companyName": "Tedmax.in",
+            "companyUrl": "https://tedmax.in",
+            "role": "Full Stack Developer",
+            "employmentType": "Freelance",
+            "startDate": "Feb 25",
+            "endDate": "Apr 25",
+            "responsibilities": [
+                "Developed and maintained an end-to-end LMS platform.",
+                "Managed various AWS resources to securely store,stream and host the service and courses.",
+                "Implemented RESTful APIs and payments using razorpay."
+            ],
+            "stack": [
+                "Next.js",
+                "PostgreSQL",
+                "Prisma",
+                "Tailwind",
+                "Type Script",
+                "AWS (S3, EC2, RDS)",
+                "Docker"
+            ]
+        }
+    ]
+}
