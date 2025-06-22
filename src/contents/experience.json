@@ -2,6 +2,7 @@
     "experiences": [
         {
             "companyName": "Tedmax.in",
+            "companyLogo": "https://tedmax.in/Logo.svg",
             "companyUrl": "https://tedmax.in",
             "role": "Full Stack Developer",
             "employmentType": "Freelance",

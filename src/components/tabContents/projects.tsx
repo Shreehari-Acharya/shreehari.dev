@@ -4,7 +4,7 @@ import ProjectCard from "../project-card.tsx";
 
 export default function Projects() {
     return (
-        <div className={`grid ${projects.length > 1 ? "grid-cols-2" : ""} gap-5 place-items-center`}
+        <div className={`grid ${projects.length > 1 ? "md:grid-cols-2" : ""}`}
 
         >
             {projects.map((item, idx) => (

@@ -9,6 +9,7 @@ import { motion } from "framer-motion"
 export default function Blogs() {
     const [blogData, setBlogData] = useState([])
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
@@ -34,6 +35,8 @@ export default function Blogs() {
                 setBlogData(data.data.publication.posts.edges)
                 setLoading(false)
             } catch (error) {
+                setError("Oops! Something went wrong while fetching the blogs.")
+                setLoading(false)
                 console.error("Error fetching blogs:", error)
             }
         }
@@ -44,15 +47,20 @@ export default function Blogs() {
     if(loading) {
         return (
             <div className="flex justify-center items-center ">
-                    <img src="/infinite-spinner.svg" className="w-1/12 h-1/12" alt="" />
+                    <img src="/infinite-spinner.svg" className="w-1/4 md:w-1/12 md:h-1/12" alt="" />
+            </div>
+        )
+    }
+    if(error) {
+        return (
+            <div className="flex justify-center items-center w-full ">
+                <p className="text-red-500 text-center w-2/3">{error}</p>
             </div>
         )
     }
     return (
-            
         <motion.div 
-            className={`grid ${blogData.length > 1 ? "grid-cols-3" : ""} gap-8 `}
-            initial={{ opacity: 0, y: 20 }}
+            className={`grid ${blogData.length > 1 ? "md:grid-cols-3" : ""} md:gap-4 md:mx-8`}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.4, ease: "easeIn" }}    

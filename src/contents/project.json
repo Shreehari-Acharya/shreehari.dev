@@ -1,7 +1,7 @@
 {
     "projects": [
         {
-            "name": "Ranked - [1v1 DSA Battles]",
+            "name": "Ranked - DSA Battles",
             "description": "A competitive coding platform that matches users in real-time 1v1 DSA battles",
             "type": "Team of 4",
             "responsibilities": [
@@ -22,7 +22,7 @@
             ]
         },
         {
-            "name": "Dhidvara - [NextGen AI Terminal]",
+            "name": "Dhidvara - AI Terminal",
             "description": "A warp like terminal that gives command suggestions and executes commands using AI.",
             "type": "Solo Project",
             "responsibilities": [

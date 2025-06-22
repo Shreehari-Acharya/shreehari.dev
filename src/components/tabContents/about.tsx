@@ -1,8 +1,8 @@
 export default function About() {
     return (
-        <div className="flex flex-col pt-6 gap-6 w-4/5">
+        <div className="flex flex-col pt-6 gap-6 w-full items-center text-sm md:text-base px-6 md:px-24">
             <p>
-                I always wanted the "About" section to be the last item in the Tab contents. Why, you ask? Because all the sections before it display my work, skills, and projects well enough for you to decide if I'm a good fit for a role. (There's more than a 90% chance you're here because of that.) But how do you evaluate a person in the early stages, especially over the internet? The short answer is, you can't! However, I can share something about myself and be quite honest while doing so.
+                I always wanted the "About" section to be the last item in the Tab contents. Why, you ask? Because all the sections before it display my work, skills, and projects well enough for you to decide if I'm a good fit for a role. (There's more than a 90% chance you're here because of that) But how do you evaluate a person in the early stages, especially over the internet? The short answer is, you can't! However, I can share something about myself and be quite honest while doing so.
             </p>
             <p>
                 It all began during the COVID-19 pandemic. I was at home, watching random YouTube videos. No school, no meeting up with friends, just me at home, passing the time with some interesting videos. Eventually, I came across a programming video that caught my attention. It was about Python programming. This led me to learn the basics of programming and sparked a high curiosity about how computers and smartphones work. I entered a phase where I watched videos explaining basic computer science concepts. Soon, I stumbled upon some hacking tutorials. I was really excited about it! The next few months were spent trying to learn everything needed to start learning hacking. The first step was to understand the basics of how computers and networking work. 
@@ -16,9 +16,7 @@ export default function About() {
             <p>
                 To be continued...
             </p>
-            <p>
-                I occasionally play chess. If you share this interest, feel free to send a request to Shreehari_06 on chess.com. — I'm not a grandmaster, just a guy who knows how the pieces move :)
-            </p>
+            
         </div>
     );
 }

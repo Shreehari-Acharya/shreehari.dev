@@ -24,7 +24,7 @@ export default function TabSection() {
 
     return (
         <div className="tab-section w-full flex flex-col items-center">
-            <div className="tab-buttons flex justify-between w-1/2 text-xl">
+            <div className="tab-buttons flex justify-between px-4 mt-3 w-full md:w-1/2 md:text-xl">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
@@ -35,11 +35,11 @@ export default function TabSection() {
                     </button>
                 ))}
             </div>
-            <div className="tab-content w-full mt-6">
+            <div className="tab-content w-full mt-6"
+            >
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}
-                        className="flex flex-col items-center"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 20 }}

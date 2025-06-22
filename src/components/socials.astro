@@ -1,15 +1,16 @@
 ---
 const size = "22"
+import links from "../contents/links.json";
 ---
 
 <div class="flex gap-6 items-center">
-    <a href="https://github.com/Shreehari-Acharya">
+    <a href={links.gitHub} target="_blank" rel="noopener noreferrer">
         <iconify-icon width={size} height={size} icon="ri:github-fill" class="text-slate-300 hover:text-slate-100"></iconify-icon>
     </a>
-    <a href="">
+    <a href={links.linkedIn} target="_blank" rel="noopener noreferrer">
         <iconify-icon width={size} height={size} icon="ri:linkedin-fill" class="text-slate-300 hover:text-slate-100"></iconify-icon>
     </a>
-    <a href="">
+    <a href={links.twitter} target="_blank" rel="noopener noreferrer">
         <iconify-icon width={size} height={size} icon="ri:twitter-x-line" class="text-slate-300 hover:text-slate-100"></iconify-icon>
     </a>
 </div>

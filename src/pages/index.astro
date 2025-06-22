@@ -15,27 +15,44 @@ import TabSection from "../components/tabs";
 		<meta name="generator" content={Astro.generator} />
 		<title>Shreehari R Acharya</title>
 	</head>
-	<body
-		class="bg-slate-950 p-10 font-JetBrainsMono flex flex-col items-center gap-10 text-slate-200/90"
-	>
-		<div class="flex justify-center items-center gap-16">
-			<img
-				src="https://placehold.co/150"
-				alt="photo"
-				class="rounded-full border-4 border-slate-100"
-			/>
-			<div class="flex flex-col items-start gap-2">
-				<h1 class="text-5xl text-slate-200 font-Sedan">
-					Shreehari R Acharya
-				</h1>
-				<p class="text-xl font-light py-4">
-					<span id="customUnderline" class="text-slate-300"> <span class="font-semibold">Forging</span> products with code</span>
-				</p>
-				<Socials />
-			</div>
-		</div>
+	<body class="bg-slate-950 font-JetBrainsMono text-slate-200/90">
+		<div class="min-h-screen flex flex-col">
+			<main class="flex-grow ">
+				<div
+					class="py-4 md:py-8 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-16"
+				>
+					<!-- <img
+						src="https://placehold.co/150"
+						alt="photo"
+						class="rounded-full border-4 border-slate-100 size-25 md:size-auto"
+					/> -->
+					<div class="flex flex-col items-start gap-2 md:gap-4">
+						<h1
+							class="text-4xl md:text-5xl text-slate-200 font-Sedan"
+						>
+							Shreehari R Acharya
+						</h1>
+						<p class="md:text-xl font-light py-4">
+							<span id="customUnderline" class="text-slate-300">
+								<span class="font-semibold">Forging</span> products
+								with code</span
+							>
+						</p>
+						<Socials />
+					</div>
+				</div>
 
-		<TabSection client:visible/>
+				<TabSection client:visible />
+			</main>
+
+			<footer>
+				<div class="flex flex-col items-center pt-[10vh]">
+					<p class="text-xs text-slate-500 py-2">
+						© 2025 Shreehari R Acharya. All rights reserved.
+					</p>
+				</div>
+			</footer>
+		</div>
 
 		<script>
 			import { annotate } from "rough-notation";
