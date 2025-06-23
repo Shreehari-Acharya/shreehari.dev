@@ -7,18 +7,18 @@ import Skills from "./tabContents/skills";
 import About from "./tabContents/about";
 
 const tabs = [
-    { id: "tab1", label: "Experience", component: <Experience /> },
-    { id: "tab2", label: "Projects", component: <Projects/> },
-    { id: "tab3", label: "Blogs", component: <Blogs/> },
-    { id: "tab4", label: "Skills", component: <Skills/> }, 
-    { id: "tab5", label: "About", component: <About /> }
+    { id: "tab1", label: "works", component: <Experience /> },
+    { id: "tab2", label: "projects", component: <Projects/> },
+    { id: "tab3", label: "blogs", component: <Blogs/> },
+    { id: "tab4", label: "skills", component: <Skills/> }, 
+    { id: "tab5", label: "about", component: <About /> }
 ]
 
 export default function TabSection() {
     const [activeTab, setActiveTab] = useState("tab1");
      const activeComponent = tabs.find((tab) => tab.id === activeTab)?.component;
 
-    const handleTabClick = (tabId) => {
+    const handleTabClick = (tabId: string) => {
         setActiveTab(tabId);
     };
 

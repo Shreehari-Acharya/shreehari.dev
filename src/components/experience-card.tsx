@@ -25,6 +25,7 @@ export default function ExperienceCard({
                         alt=""
                         className="rounded-full bg-slate-200 object-cover"
                     />
+
                     <div>
                         <a href={companyUrl || "#"} target="_blank" rel="noopener noreferrer"
                         ><h2
