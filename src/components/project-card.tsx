@@ -11,7 +11,7 @@ export default function ProjectCard({
 }) {
   return (
     <motion.div
-      className="outline outline-slate-400/35 rounded-lg mt-4 hover:shadow-lg/25 mx-3 md:mx-8"
+      className="outline outline-slate-400/35 rounded-lg mt-4 hover:shadow-lg/25 mx-3 md:mx-3"
       whileHover={{ scale: 1.01, transition: { duration: 0.4 } }}
     >
       <div className="flex justify-between items-start border-b border-slate-400/30 px-4 py-3 mb-3.5">
