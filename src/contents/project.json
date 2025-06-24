@@ -3,7 +3,7 @@
         {
             "name": "ForceTrack - Codeforces Analytics Dashboard",
             "description": "An analytics dashboard that tracks Codeforces performance, contest history, and problem-solving activity of a set of codeforces handle.",
-            "type": "Team Project",
+            "type": "Solo Project",
             "responsibilities": [
                 "Designed and developed a modern, responsive frontend using React.js, Tailwind CSS, and Recharts for visualizing contest history, problem stats, and student activity heatmaps.",
                 "Built a RESTful backend with Express.js and MongoDB to manage students, sync data from the Codeforces API, and serve analytics to the frontend.",
