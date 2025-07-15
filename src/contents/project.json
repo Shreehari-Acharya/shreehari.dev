@@ -1,15 +1,47 @@
 {
     "projects": [
         {
+            "name": "code-collab",
+            "description": "A github codespace alternative, code and test in a cloud based IDE free from distractions.",
+            "type": "Solo Project",
+            "liveLink": "https://code-collab.shreehari.dev",
+            "githubLink": "Code Collab is a web-based development environment that allows users to create, manage, and work on projects in isolated Docker-based workspaces. It provides a file explorer, a code editor, and a terminal for a seamless development experience.",
+            "stack": [
+                "Express.js",
+                "TypeScript",
+                "React.js",
+                "monaco-editor",
+                "xterm.js",
+                "Tailwind CSS",
+                "Prisma",
+                "Docker",
+                "PostgreSQL",
+                "Node.js",
+                "AWS (S3)"
+            ]
+        },
+        {
+            "name": "Infinity Comments",
+            "description": "A minimalistic social media like X. Users can post and reply to comments in real time. With caching and optimizations for better performance.",
+            "type": "Solo Project",
+            "liveLink": null,
+            "githubLink": "https://github.com/Shreehari-Acharya/Infinity-comments",
+            "stack": [
+                "Nest.js",
+                "Next.js",
+                "TypeScript",
+                "React.js",
+                "PostgreSQL",
+                "Redis",
+                "Tailwind CSS",
+                "Prisma",
+                "Docker"
+            ]
+        },
+        {
             "name": "ForceTrack - Codeforces Analytics Dashboard",
             "description": "An analytics dashboard that tracks Codeforces performance, contest history, and problem-solving activity of a set of codeforces handle.",
             "type": "Solo Project",
-            "responsibilities": [
-                "Designed and developed a modern, responsive frontend using React.js, Tailwind CSS, and Recharts for visualizing contest history, problem stats, and student activity heatmaps.",
-                "Built a RESTful backend with Express.js and MongoDB to manage students, sync data from the Codeforces API, and serve analytics to the frontend.",
-                "Implemented cron jobs to automatically sync contest and submission data periodically, storing rating trends and problem-solving behavior over time.",
-                "Integrated CSV export, email reminders for inactivity using Resend, and a light/dark theme toggle to enhance user experience and engagement."
-            ],
             "liveLink": null,
             "githubLink": "https://github.com/Shreehari-Acharya/ForceTrack",
             "stack": [
@@ -28,12 +60,6 @@
             "name": "Ranked - DSA Battles",
             "description": "A competitive coding platform that matches users in real-time 1v1 DSA battles",
             "type": "Team of 4",
-            "responsibilities": [
-                "Designed and implemented the backend, including APIs for matchmaking, code submission, judging, result processing, and rating updates.",
-                "Set up and integrated Judge0 (an open-source code execution engine) in an AWS EC2 instance to evaluate user-submitted code in real-time.",
-                "Integrated frontend with backend, ensuring smooth user flow from login to matchmaking to result display.",
-                "Utilized Redis for implementing a real-time matchmaking queue and leaderboard, using data structures like Sorted Sets for performance-critical ranking operations."
-            ],
             "liveLink": "https://ranked-80.vercel.app",
             "githubLink": "https://github.com/Shreehari-Acharya/Ranked",
             "stack": [
@@ -50,12 +76,6 @@
             "name": "Dhidvara - AI Terminal",
             "description": "A warp like terminal that gives command suggestions and executes commands using AI.",
             "type": "Solo Project",
-            "responsibilities": [
-                "Developed a terminal emulator using electron and React.js.",
-                "Integrated LLMs to provide real-time command suggestions while typing using Groq.",
-                "Implemented task automation via natural language prompts using @ commands.",
-                "Designed a custom terminal interface with support for AI ghost text and PTY handling."
-            ],
             "liveLink": "https://dhidvara.vercel.app",
             "githubLink": "https://github.com/Shreehari-Acharya/Dhidvara",
             "stack": [

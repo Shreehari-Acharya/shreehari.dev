@@ -4,7 +4,7 @@ import ProjectCard from "../project-card.tsx";
 
 export default function Projects() {
     return (
-        <div className={`grid ${projects.length > 1 ? "md:grid-cols-2" : ""}`}
+        <div className={`grid ${projects.length > 1 ? "md:grid-cols-3" : ""}`}
 
         >
             {projects.map((item, idx) => (
@@ -13,7 +13,6 @@ export default function Projects() {
                     name={item.name}
                     description={item.description}
                     type={item.type}
-                    responsibilities={item.responsibilities}
                     liveLink={item.liveLink}
                     githubLink={item.githubLink}
                     stack={item.stack}

@@ -11,7 +11,7 @@ const tabs = [
     { id: "tab2", label: "projects", component: <Projects/> },
     { id: "tab3", label: "blogs", component: <Blogs/> },
     { id: "tab4", label: "skills", component: <Skills/> }, 
-    { id: "tab5", label: "about", component: <About /> }
+    // { id: "tab5", label: "about", component: <About /> }
 ]
 
 export default function TabSection() {

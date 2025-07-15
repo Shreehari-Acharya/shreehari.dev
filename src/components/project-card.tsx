@@ -4,7 +4,6 @@ export default function ProjectCard({
   name,
   description,
   type,
-  responsibilities,
   liveLink,
   githubLink,
   stack
@@ -16,7 +15,7 @@ export default function ProjectCard({
     >
       <div className="flex justify-between items-start border-b border-slate-400/30 px-4 py-3 mb-3.5">
         <div>
-          <h2 className="text-base md:text-xl text-cyan-300 hover:text-blue-400">
+          <h2 className="text-base md:text-lg text-cyan-300 hover:text-blue-400">
             {liveLink ? (
               <a href={liveLink} target="_blank" rel="noopener noreferrer">
                 {name}
@@ -53,14 +52,6 @@ export default function ProjectCard({
 
       <div className="px-3">
         <p className="text-xs md:text-sm text-slate-200 mb-2">{description}</p>
-
-        <ul className="text-xs md:text-sm list-disc list-inside mt-2 font-light space-y-2">
-          {responsibilities?.length > 0 ? (
-            responsibilities.map((item: string, idx: number) => <li key={idx}>{item}</li>)
-          ) : (
-            <li className="text-slate-300">No responsibilities listed.</li>
-          )}
-        </ul>
 
         {stack && stack.length > 0 && (
           <div className="mt-4 text-sm space-x-2 text-slate-300 flex flex-wrap">
