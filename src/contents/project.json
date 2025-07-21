@@ -4,8 +4,8 @@
             "name": "code-collab",
             "description": "A github codespace alternative, code and test in a cloud based IDE free from distractions.",
             "type": "Solo Project",
-            "liveLink": "https://code-collab.shreehari.dev",
-            "githubLink": "Code Collab is a web-based development environment that allows users to create, manage, and work on projects in isolated Docker-based workspaces. It provides a file explorer, a code editor, and a terminal for a seamless development experience.",
+            "liveLink": null,
+            "githubLink": "https://github.com/Shreehari-Acharya/code-collab",
             "stack": [
                 "Express.js",
                 "TypeScript",
