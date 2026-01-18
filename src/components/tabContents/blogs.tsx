@@ -60,7 +60,7 @@ export default function Blogs() {
     }
     return (
         <motion.div 
-            className={`grid ${blogData.length > 1 ? "md:grid-cols-3" : ""} md:gap-4 md:mx-8`}
+            className={`flex flex-col justify-center items-center w-auto mt-20`}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.4, ease: "easeIn" }}    

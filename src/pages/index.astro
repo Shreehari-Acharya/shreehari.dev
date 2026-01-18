@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import Socials from "../components/socials.astro";
 import Projects from "../components/tabContents/projects";
+import Skills from "../components/tabContents/skills";
+import Blogs from "../components/tabContents/blogs";
 ---
 
 <html lang="en" class="overflow-y-scroll scroll-smooth">
@@ -98,8 +100,10 @@ import Projects from "../components/tabContents/projects";
 						<Socials />
 					</div>
 				</div>
-
+				<Skills client:only/>
+				<!-- <Skills/> -->
 				<Projects />
+				<Blogs client:only/>
 			</main>
 
 			<footer class="flex flex-col items-center pt-[10vh]">
