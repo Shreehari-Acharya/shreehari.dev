@@ -89,26 +89,25 @@ import Blogs from "../components/tabContents/blogs";
 					/> -->
 					<div class="flex flex-col items-start">
 						<h1
-							class="text-4xl md:text-4xl text-slate-200 font-Sedan"
+							class="text-3xl md:text-4xl text-slate-200 font-Sedan pt-10 md:pt-0"
 						>
 							Shreehari R Acharya
 						</h1>
 						<p class="md:text-xl font-light pb-3">
 							<span id="customUnderline" class="text-slate-300">
-								<span class="text-sm">I build stuffs</span>
+								<span class="text-sm">I build software.</span>
 						</p>
 						<Socials />
 					</div>
 				</div>
 				<Skills client:only/>
-				<!-- <Skills/> -->
 				<Projects />
 				<Blogs client:only/>
 			</main>
 
-			<footer class="flex flex-col items-center pt-[10vh]">
-				<p class="text-xs text-slate-500 py-2">
-					© {new Date().getFullYear()} Shreehari R Acharya. All rights reserved.
+			<footer class="flex flex-col items-center pt-[10vh] mb-8">
+				<p class="text-xs text-slate-500 py-2 flex flex-col items-center text-center">
+					&copy; {new Date().getFullYear()} Shreehari R Acharya. All rights reserved.
 				</p>
 			</footer>
 		</div>

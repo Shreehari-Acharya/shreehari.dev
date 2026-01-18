@@ -15,7 +15,7 @@ export default function ProjectCard({
     >
       <div className="flex justify-between items-start border-slate-400/30 px-4 pt-3 mb-3.5">
         <div>
-          <h2 className="text-base md:text-sm text-cyan-300 hover:text-blue-400">
+          <h2 className="text-sm text-cyan-300 hover:text-blue-400">
             {liveLink ? (
               <a href={liveLink} target="_blank" rel="noopener noreferrer">
                 {name}

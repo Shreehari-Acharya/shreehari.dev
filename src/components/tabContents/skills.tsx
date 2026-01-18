@@ -9,7 +9,7 @@ export default function Skills() {
               <GitHubCalendar username='Shreehari-Acharya' />
             </div>
             <div className='w-full items-center flex flex-col gap-4'>
-                <div className="mt-4 text-xs w-2/3 text-slate-300 flex flex-wrap gap-2 mb-15">
+                <div className="mt-4 px-3 md:p-0 md:text-xs md:w-2/3 text-slate-300 flex flex-wrap gap-2 mb-15">
             {technologies.map((tech: string, idx: number) => (
               <span
                 key={idx}
