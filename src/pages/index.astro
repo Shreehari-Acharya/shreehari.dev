@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Socials from "../components/socials.astro";
-import TabSection from "../components/tabs";
+import Projects from "../components/tabContents/projects";
 ---
 
 <html lang="en" class="overflow-y-scroll scroll-smooth">
@@ -85,28 +85,26 @@ import TabSection from "../components/tabs";
 						alt="photo"
 						class="rounded-full border-4 border-slate-100 size-25 md:size-auto"
 					/> -->
-					<div class="py-6 flex flex-col items-start gap-2 md:gap-4">
+					<div class="flex flex-col items-start">
 						<h1
-							class="text-4xl md:text-5xl text-slate-200 font-Sedan"
+							class="text-4xl md:text-4xl text-slate-200 font-Sedan"
 						>
 							Shreehari R Acharya
 						</h1>
-						<p class="md:text-xl font-light py-4">
+						<p class="md:text-xl font-light pb-3">
 							<span id="customUnderline" class="text-slate-300">
-								<span class="font-semibold">Forging</span> products
-								with code</span
-							>
+								<span class="text-sm">I build stuffs</span>
 						</p>
 						<Socials />
 					</div>
 				</div>
 
-				<TabSection client:visible />
+				<Projects />
 			</main>
 
 			<footer class="flex flex-col items-center pt-[10vh]">
 				<p class="text-xs text-slate-500 py-2">
-					© 2025 Shreehari R Acharya. All rights reserved.
+					© {new Date().getFullYear()} Shreehari R Acharya. All rights reserved.
 				</p>
 			</footer>
 		</div>
@@ -119,7 +117,8 @@ import TabSection from "../components/tabs";
 					type: "underline",
 					color: "#f9a826",
 					animationDuration: 2000,
-					strokeWidth: 2,
+					strokeWidth: 1,
+					padding: 0.5,
 				});
 				setTimeout(() => {
 					annotation.show();
