@@ -60,7 +60,7 @@
             "name": "Ranked - DSA Battles",
             "description": "A competitive coding platform that matches users in real-time 1v1 DSA battles",
             "type": "Team of 4",
-            "liveLink": "https://ranked-80.vercel.app",
+            "liveLink": null,
             "githubLink": "https://github.com/Shreehari-Acharya/Ranked",
             "stack": [
                 "React.js",
@@ -76,7 +76,7 @@
             "name": "Dhidvara - AI Terminal",
             "description": "A warp like terminal that gives command suggestions and executes commands using AI.",
             "type": "Solo Project",
-            "liveLink": "https://dhidvara.vercel.app",
+            "liveLink": null,
             "githubLink": "https://github.com/Shreehari-Acharya/Dhidvara",
             "stack": [
                 "React.js",
