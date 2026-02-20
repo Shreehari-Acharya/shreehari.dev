@@ -1,6 +1,37 @@
 {
     "projects": [
         {
+            "name": "Vayuu",
+            "description": "A powerful, privacy-focused AI agent that runs on your local machine and uses Telegram as its interface. Execute commands, manage files, browse web, and more.",
+            "type": "Solo Project",
+            "liveLink": null,
+            "githubLink": null,
+            "stack": [
+                "Go",
+                "Telegram Bot API",
+                "Ollama",
+                "OpenAI API",
+                "System Integration"
+            ]
+        },
+        {
+            "name": "Arche",
+            "description": "An AI-driven platform designed to help students study smarter through personalized learning paths, curated resources, smart notes, and active revision tools.",
+            "type": "Team of 3",
+            "liveLink": null,
+            "githubLink": null,
+            "stack": [
+                "Flutter",
+                "Express.js",
+                "TypeScript",
+                "Prisma",
+                "PostgreSQL",
+                "YouTube Data API",
+                "AI Integration",
+                "Docker"
+            ]
+        },
+        {
             "name": "code-collab",
             "description": "A github codespace alternative, code and test in a cloud based IDE free from distractions.",
             "type": "Solo Project",
