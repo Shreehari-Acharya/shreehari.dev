@@ -1,6 +1,17 @@
 {
     "projects": [
         {
+            "name": "Sarvam AI Go SDK",
+            "description": "An idiomatic Go client for the Sarvam AI API. Features Chat, Speech-to-Text, Text-to-Speech with streaming, Translation, Transliteration, Language Identification, Document Intelligence, and Batch Processing with automatic retries and exponential backoff.",
+            "type": "Solo Project",
+            "liveLink": "https://pkg.go.dev/github.com/Shreehari-Acharya/sarvamai-go",
+            "githubLink": "https://github.com/Shreehari-Acharya/sarvamai-go",
+            "stack": [
+                "Go",
+                "Sarvam AI API"
+            ]
+        },
+        {
             "name": "Vayuu",
             "description": "A powerful, privacy-focused AI agent that runs on your local machine and uses Telegram as its interface. Execute commands, manage files, browse web, and more.",
             "type": "Solo Project",
