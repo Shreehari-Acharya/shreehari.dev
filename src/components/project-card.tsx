@@ -1,4 +1,11 @@
-import { motion } from "framer-motion";
+type ProjectCardProps = {
+  name: string;
+  description: string;
+  type: string;
+  liveLink: string | null;
+  githubLink: string | null;
+  stack: string[];
+};
 
 export default function ProjectCard({
   name,
@@ -7,60 +14,65 @@ export default function ProjectCard({
   liveLink,
   githubLink,
   stack
-}) {
+}: ProjectCardProps) {
   return (
-    <motion.div
-      className="outline outline-slate-400/35 rounded-lg hover:shadow-[0_0_30px_-5px_rgba(34,211,238,0.15)] relative overflow-hidden group"
-      whileHover={{ scale: 1.01, transition: { duration: 0.4 } }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-      
-      <div className="flex justify-between items-start border-slate-400/30 px-3 pt-3 mb-2">
-        <div>
-          <h2 className="text-xs md:text-sm text-cyan-300 hover:text-blue-400 transition-colors">
-            {liveLink ? (
-              <a href={liveLink} target="_blank" rel="noopener noreferrer">
-                {name}
+    <article className="card-shell">
+      <div className="flex h-full flex-col gap-5 py-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-3">
+            <p className="font-JetBrainsMono text-[0.65rem] uppercase tracking-[0.24em] text-cyan-100/55">
+              {type}
+            </p>
+            <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-100 md:text-xl">
+              {liveLink ? (
+                <a
+                  href={liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors duration-200 hover:text-cyan-200"
+                >
+                  {name}
+                </a>
+              ) : (
+                name
+              )}
+            </h3>
+          </div>
+
+          <div className="flex shrink-0 flex-wrap gap-x-4 gap-y-2 sm:justify-end">
+            {githubLink && (
+              <a
+                href={githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="status-chip"
+              >
+                GitHub
               </a>
-            ) : (
-              name
             )}
-          </h2>
-          <p className="text-[9px] md:text-[10px] text-slate-400 mt-1 font-light">{type}</p>
+            {liveLink && (
+              <a
+                href={liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="status-chip"
+              >
+                Live
+              </a>
+            )}
+          </div>
         </div>
-        <div className="flex gap-3">
-          {githubLink && (
-            <a
-              href={githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs md:text-xs text-slate-400 hover:text-white underline transition-colors"
-            >
-              GitHub
-            </a>
-          )}
-          {liveLink && (
-            <a
-              href={liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-slate-400 hover:text-white underline transition-colors"
-            >
-              Live
-            </a>
-          )}
-        </div>
-      </div>
 
-      <div className="px-3 pb-3">
-        <p className="text-[11px] md:text-[12px] text-slate-200 mb-3 leading-relaxed">{description}</p>
+        <p className="max-w-[62ch] text-sm leading-7 text-slate-300/84">
+          {description}
+        </p>
 
-        {stack && stack.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {stack.slice(0, 6).map((tech: string, idx: number) => (
+        {stack.length > 0 && (
+          <div className="mt-auto flex flex-wrap gap-x-3 gap-y-2">
+            {stack.slice(0, 7).map((tech) => (
               <span
-                key={idx}
-                className="bg-slate-800/60 border border-slate-700/50 px-2 py-0.5 rounded text-[9px] text-slate-400"
+                key={tech}
+                className="font-JetBrainsMono text-[0.64rem] uppercase tracking-[0.12em] text-slate-400/78"
               >
                 {tech}
               </span>
@@ -68,6 +80,6 @@ export default function ProjectCard({
           </div>
         )}
       </div>
-    </motion.div>
+    </article>
   );
 }

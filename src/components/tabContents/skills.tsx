@@ -1,29 +1,43 @@
-import GitHubCalendar from 'react-github-calendar';
-import {technologies} from "../../contents/techStack.json"
-import { motion } from "framer-motion";
+import GitHubCalendar from "react-github-calendar";
+import { technologies } from "../../contents/techStack.json";
+
+const theme = {
+  dark: ["#0f172a", "#0e3a4f", "#0f766e", "#06b6d4", "#67e8f9"]
+};
 
 export default function Skills() {
+  return (
+    <section id="skills" className="section-panel">
+      <div className="flex flex-col gap-4">
+        <h2 className="section-heading text-lg">
+          <span className="section-heading-accent">/</span>
+          skills
+        </h2>
 
-    return (
-        <div className="flex flex-col items-center pt-12 gap-8">
-            <h2 className="text-xl md:text-2xl text-slate-200 font-Sedan">
-                <span className="text-cyan-400">/</span>skills
-            </h2>
-            <div className='w-11/12 items-center flex flex-col '>
-              <GitHubCalendar username='Shreehari-Acharya' />
-            </div>
-            <div className='w-full items-center flex flex-col gap-4'>
-                <div className="mt-4 px-3 md:p-0 md:text-xs md:w-2/3 text-slate-300 flex flex-wrap gap-2 mb-15 justify-center">
-            {technologies.map((tech: string, idx: number) => (
-              <span
-                key={idx}
-                className="bg-slate-800/60 border border-slate-700/50 px-2.5 py-1 rounded text-xs text-slate-400 hover:text-cyan-300 hover:border-cyan-500/30 transition-colors"
-              >
-                {tech}
-              </span>
-            ))}
+        <div className="overflow-x-auto py-1">
+          <div className="min-w-[720px]">
+            <GitHubCalendar
+              username="Shreehari-Acharya"
+              colorScheme="dark"
+              blockSize={13}
+              blockMargin={4}
+              fontSize={12}
+              theme={theme}
+            />
           </div>
-            </div>
         </div>
-    );
+
+        <div className="flex max-w-4xl flex-wrap gap-x-5 gap-y-3">
+          {technologies.map((tech: string) => (
+            <span
+              key={tech}
+              className="font-JetBrainsMono text-[0.64rem] uppercase tracking-[0.12em] text-slate-400/80"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
