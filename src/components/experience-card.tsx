@@ -1,77 +1,89 @@
-import { motion } from "motion/react"
+type ExperienceCardProps = {
+  companyName: string;
+  companyLogo?: string | null;
+  companyUrl?: string | null;
+  startDate: string;
+  endDate: string;
+  role: string;
+  employmentType: string;
+  responsibilities: string[];
+  stack?: string[];
+};
 
 export default function ExperienceCard({
-    companyName,
-    companyLogo,
-    companyUrl,
-    startDate,
-    endDate,
-    role,
-    employmentType,
-    responsibilities,
-    stack
-}) {
-    return (
-        <motion.div 
-            className="outline outline-slate-400/35 rounded-lg mt-4 hover:shadow-lg/25 mx-5"
-            whileHover={{ scale: 1.01, transition: { duration: 0.4 } }}
-        >
-            <div
-                className="flex justify-between items-center border-b border-slate-400/30 px-4 py-3 mb-3.5"
-            >
-                <div className="flex items-center gap-4">
-                    <img
-                        src={companyLogo || "https://placehold.co/50"}
-                        alt=""
-                        className="rounded-full bg-slate-200 object-cover"
-                    />
+  companyName,
+  companyLogo,
+  companyUrl,
+  startDate,
+  endDate,
+  role,
+  employmentType,
+  responsibilities,
+  stack = []
+}: ExperienceCardProps) {
+  return (
+    <article className="card-shell mt-4 w-full max-w-xl">
+      <div className="flex h-full flex-col gap-5 p-5 md:p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-4">
+            <img
+              src={companyLogo || "https://placehold.co/50"}
+              alt=""
+              className="h-12 w-12 rounded-full bg-slate-200 object-cover"
+            />
 
-                    <div>
-                        <a href={companyUrl || "#"} target="_blank" rel="noopener noreferrer"
-                        ><h2
-                            className="text-xl text-cyan-300 hover:text-blue-400"
-                        >
-                                {companyName || "Not available"}
-                            </h2></a
-                        >
-                        <p className="text-xs text-slate-300">
-                            {startDate}' - {endDate + "'" || "Present"}
-                        </p>
-                    </div>
-                </div>
-                <h4
-                    className="text-sm text-green-400 bg-emerald-700/20 rounded-xl px-3.5 py-0.5"
-                >
-                    {employmentType || ""}
-                </h4>
+            <div className="space-y-1">
+              <a
+                href={companyUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-semibold text-slate-100 transition-colors duration-200 hover:text-cyan-200"
+              >
+                {companyName || "Not available"}
+              </a>
+              <p className="font-JetBrainsMono text-[0.68rem] uppercase tracking-[0.14em] text-slate-400">
+                {startDate}' - {endDate ? `${endDate}'` : "Present"}
+              </p>
             </div>
-            <div className="px-3">
-                <h4 className="text-base text-amber-400">{role}</h4>
-                <ul
-                    className="text-xs md:text-sm list-disc list-inside mt-2 font-light space-y-2"
+          </div>
+
+          <span className="status-chip">
+            {employmentType || "Experience"}
+          </span>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-base font-medium text-cyan-200">
+            {role}
+          </h3>
+
+          <ul className="space-y-2 text-sm leading-7 text-slate-300/82">
+            {responsibilities.map((item, index) => (
+              <li key={index} className="flex gap-3">
+                <span className="mt-[0.72rem] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+
+            {responsibilities.length === 0 && (
+              <li className="text-slate-400">No responsibilities listed.</li>
+            )}
+          </ul>
+
+          {stack.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {stack.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 font-JetBrainsMono text-[0.64rem] uppercase tracking-[0.12em] text-slate-300/72"
                 >
-                    {responsibilities.map((item: string, idx: number) => (
-                        <li key={idx}>{item}</li>
-                    ))}
-                    {responsibilities.length === 0 && (
-                        <li className="text-slate-400">
-                            No responsibilities listed.
-                        </li>
-                    )}
-                </ul>
-                {stack && stack.length > 0 && (
-                    <div className="mt-4 text-xs md:text-sm space-x-2 flex flex-wrap">
-                            {stack.map((item: string, idx: number) => (
-                                <span
-                                    key={idx}
-                                    className="bg-slate-700/40 px-2 py-0.5 rounded text-xs mb-2"
-                                >
-                                    {item}
-                                </span>
-                            ))}
-                    </div>
-                )}
+                  {item}
+                </span>
+              ))}
             </div>
-        </motion.div>
-    )
+          )}
+        </div>
+      </div>
+    </article>
+  );
 }
