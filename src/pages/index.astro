@@ -29,6 +29,7 @@ import Blogs from "../components/tabContents/blogs";
 		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#050816" />
 		<title>Shreehari R Acharya</title>
 		<meta
 			name="description"
@@ -71,66 +72,42 @@ import Blogs from "../components/tabContents/blogs";
 				"jobTitle": "CS Engineering Student"
 			}
 		</script>
-
-		<script
-			src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"
-		></script>
 	</head>
-	<body class="bg-gray-950 font-JetBrainsMono text-slate-200/90 relative overflow-x-hidden">
-		<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-			<div class="absolute top-10 -left-20 w-72 h-72 bg-cyan-500/8 rounded-full blur-3xl"></div>
-			<div class="absolute bottom-40 -right-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
-		</div>
-		<div class="min-h-screen flex flex-col relative z-10">
-			<main class="flex-grow">
-				<div
-					class="md:py-8 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-16"
-				>
-					<!-- <img
-						src="https://placehold.co/150"
-						alt="photo"
-						class="rounded-full border-4 border-slate-100 size-25 md:size-auto"
-					/> -->
-					<div class="flex flex-col items-start">
-						<h1
-							class="text-3xl md:text-4xl text-slate-200 font-Sedan pt-10 md:pt-0"
-						>
+		<body class="overflow-x-hidden antialiased">
+		<div class="relative isolate">
+			<main class="page-shell pb-16 pt-16 md:pb-24 md:pt-24">
+				<section class="max-w-4xl space-y-8 md:space-y-10">
+					<div class="space-y-4 md:space-y-5">
+						<h1 class="font-Sedan max-w-3xl text-4xl font-normal leading-none tracking-[-0.04em] text-slate-50 md:text-6xl">
 							Shreehari R Acharya
 						</h1>
-						<p class="md:text-xl font-light pb-3">
-							<span id="customUnderline" class="text-slate-300">
-								<span class="text-sm">I build software.</span>
+						<p class="max-w-2xl text-base leading-7 text-slate-300/82 md:text-xl md:leading-8">
+							Interested in building scalable systems, developer tooling,
+							and real-world applications. I work with Go and TypeScript.
 						</p>
-						<Socials />
 					</div>
+
+					<div class="flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
+						<a href="#projects" class="pill-link">Projects</a>
+						<a href="#skills" class="pill-link">Skills</a>
+						<a href="#blogs" class="pill-link">Blogs</a>
+					</div>
+
+					<Socials />
+				</section>
+
+				<div class="mt-20 space-y-20 md:mt-24 md:space-y-28">
+					<Skills client:only="react" />
+					<Projects client:visible />
+					<Blogs client:visible />
 				</div>
-			<Skills client:only/>
-			<Projects client:only/>
-			<Blogs client:only/>
 			</main>
 
-			<footer class="flex flex-col items-center pt-[10vh] mb-8">
-				<p class="text-xs text-slate-500 py-2 flex flex-col items-center text-center">
+			<footer class="page-shell pb-10 pt-6 md:pt-8">
+				<p class="font-JetBrainsMono text-[0.68rem] uppercase tracking-[0.22em] text-slate-500">
 					&copy; {new Date().getFullYear()} Shreehari R Acharya. All rights reserved.
 				</p>
 			</footer>
 		</div>
-
-		<script>
-			import { annotate } from "rough-notation";
-			const e = document.querySelector("#customUnderline");
-			if (e instanceof HTMLElement) {
-				const annotation = annotate(e, {
-					type: "underline",
-					color: "#f9a826",
-					animationDuration: 2000,
-					strokeWidth: 1,
-					padding: 0.5,
-				});
-				setTimeout(() => {
-					annotation.show();
-				}, 2000);
-			}
-		</script>
 	</body>
 </html>
