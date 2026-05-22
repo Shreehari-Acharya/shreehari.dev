@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Tailwind CSS",
+    "icon": "tailwind"
+  },
+  {
+    "name": "Golang",
+    "icon": "go"
+  },
+  {
+    "name": "TypeScript",
+    "icon": "typescript"
+  },
+  {
+    "name": "React",
+    "icon": "react"
+  },
+  {
+    "name": "TanStack",
+    "icon": "tanstack"
+  },
+  {
+    "name": "Node.js",
+    "icon": "node"
+  },
+  {
+    "name": "Nest.js",
+    "icon": "nestjs"
+  },
+  {
+    "name": "Next.js",
+    "icon": "nextjs"
+  },
+  {
+    "name": "PostgreSQL",
+    "icon": "postgresql"
+  },
+  {
+    "name": "Prisma",
+    "icon": "prisma"
+  },
+  {
+    "name": "MongoDB",
+    "icon": "mongodb"
+  },
+  {
+    "name": "Redis",
+    "icon": "redis"
+  },
+  {
+    "name": "Docker",
+    "icon": "docker"
+  },
+  {
+    "name": "AWS",
+    "icon": "aws"
+  }
+]

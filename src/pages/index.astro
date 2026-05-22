@@ -1,113 +1,91 @@
 ---
-import "../styles/global.css";
-import Socials from "../components/socials.astro";
-import Projects from "../components/tabContents/projects";
-import Skills from "../components/tabContents/skills";
-import Blogs from "../components/tabContents/blogs";
+import { Image } from "astro:assets";
+import { ExperienceList } from "../components/experience-list";
+import { ProjectList } from "../components/project-list";
+import { SocialLinks } from "../components/social-links";
+import { TechStackMarquee } from "../components/tech-stack-marquee";
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const allPosts = await getCollection("blog");
+allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const recentPosts = allPosts.slice(0, 3);
 ---
 
-<html lang="en" class="overflow-y-scroll scroll-smooth">
-	<head>
-		<meta charset="utf-8" />
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/apple-touch-icon.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="/favicon-32x32.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="/favicon-16x16.png"
-		/>
-		<link rel="manifest" href="/site.webmanifest" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#050816" />
-		<title>Shreehari R Acharya</title>
-		<meta
-			name="description"
-			content="Looking for a developer named Shreehari? You found the right one!"
-		/>
-		<meta
-			name="keywords"
-			content="Shreehari, Acharya, shreehari R Acharya, dev"
-		/>
-		<meta name="author" content="Shreehari R Acharya" />
-		<link rel="canonical" href="https://shreehari.dev/" />
-		<meta property="og:title" content="Shreehari R Acharya" />
-		<meta
-			property="og:description"
-			content="Shreehari R Acharya, forging products with code"
-		/>
-		<meta property="og:url" content="https://shreehari.dev/" />
-		<meta property="og:type" content="website" />
-		<meta property="og:image" content="/og-image.png" />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Shreehari R Acharya" />
-		<meta
-			name="twitter:description"
-			content="Shreehari R Acharya, forging products with code"
-		/>
-		<meta name="twitter:image" content="/og-image.png" />
-		<meta name="twitter:site" content="@06_Shreehari" />
-		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "Person",
-				"name": "Shreehari R Acharya",
-				"url": "https://shreehari.dev/",
-				"sameAs": [
-					"https://github.com/Shreehari-Acharya",
-					"https://www.linkedin.com/in/shreehari-acharya/",
-					"https://x.com/06_Shreehari",
-					"https://shreehari-06.hashnode.dev/"
-				],
-				"jobTitle": "CS Engineering Student"
-			}
-		</script>
-	</head>
-		<body class="overflow-x-hidden antialiased">
-		<div class="relative isolate">
-			<main class="page-shell pb-16 pt-16 md:pb-24 md:pt-24">
-				<section class="max-w-4xl space-y-8 md:space-y-10">
-					<div class="space-y-4 md:space-y-5">
-						<h1 class="font-Sedan max-w-3xl text-4xl font-normal leading-none tracking-[-0.04em] text-slate-50 md:text-6xl">
-							Shreehari R Acharya
-						</h1>
-						<p class="max-w-2xl text-base leading-7 text-slate-300/82 md:text-xl md:leading-8">
-							Building scalable systems, developer tooling,
-							and real-world applications. I work with Go and TypeScript.
-						</p>
-					</div>
+<Layout>
+  <main
+    class="mx-auto min-h-svh max-w-4xl px-6 py-20"
+    aria-labelledby="page-title"
+  >
+    <section class="w-full">
+      <h1
+        id="page-title"
+        class="font-heading text-4xl font-medium tracking-tight text-foreground sm:text-5xl"
+      >
+        Shreehari R Acharya
+      </h1>
+      <p class="text-sm text-muted-foreground font-medium">
+        20 &#8226 Software Engineer
+      </p>
+      <p class="mt-3 text-base text-start text-muted-foreground font-light">
+        Building scalable systems, developer tooling, Agentic and real-world
+        applications. I work with Go and Typescript.
+      </p>
+      <SocialLinks />
+      <TechStackMarquee />
+      <ExperienceList />
+      <ProjectList client:load />
 
-					<div class="flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8">
-						<a href="#projects" class="pill-link">Projects</a>
-						<a href="#skills" class="pill-link">Skills</a>
-						<a href="#blogs" class="pill-link">Blogs</a>
-					</div>
+      <section class="mt-10 w-full text-left" aria-labelledby="blog-title">
+        <h2 id="blog-title" class="text-sm font-medium text-foreground/60">
+          BLOG
+        </h2>
 
-					<Socials />
-				</section>
+        <div class="mt-4 space-y-6">
+          {
+            recentPosts.map((post) => (
+              <article>
+                <a
+                  href={`/blogs/${post.id}`}
+                  class="group flex items-start gap-4"
+                >
+                  {post.data.cover ? (
+                    <Image
+                      src={post.data.cover}
+                      alt={post.data.coverAlt ?? ""}
+                      class="w-34 shrink-0 rounded-lg"
+                    />
+                  ) : null}
+                  <div>
+                    <time class="text-xs text-muted-foreground">
+                      {post.data.pubDate.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                    <h2 class="mt-1 text-base font-medium text-foreground transition-colors group-hover:text-muted-foreground">
+                      {post.data.title}
+                    </h2>
+                    <p class="mt-1 line-clamp-1 text-sm text-muted-foreground">
+                      {post.data.description}
+                    </p>
+                  </div>
+                </a>
+              </article>
+            ))
+          }
+        </div>
 
-				<div class="mt-20 space-y-20 md:mt-24 md:space-y-28">
-					<Skills client:only="react" />
-					<Projects client:visible />
-					<Blogs client:visible />
-				</div>
-			</main>
-
-			<footer class="page-shell pb-10 pt-6 md:pt-8">
-				<p class="font-JetBrainsMono text-[0.68rem] uppercase tracking-[0.22em] text-slate-500">
-					&copy; {new Date().getFullYear()} Shreehari R Acharya. All rights reserved.
-				</p>
-			</footer>
-		</div>
-	</body>
-</html>
+        <div class="mt-4 flex justify-center">
+          <a
+            href="/blogs"
+            class="text-xs text-muted-foreground underline-offset-2 hover:underline"
+          >
+            Show all
+          </a>
+        </div>
+      </section>
+    </section>
+  </main>
+</Layout>
