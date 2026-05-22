@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://shreehari.dev/sitemap-index.xml
