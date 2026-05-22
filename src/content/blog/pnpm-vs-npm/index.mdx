@@ -1,0 +1,105 @@
+---
+title: "pnpm vs npm"
+description: "Understanding pnpm's architecture — how it uses hard links and symlinks to save disk space and solve dependency management problems."
+cover: "./cover.webp"
+coverAlt: "pnpm vs npm — pnpm architecture overview diagram"
+pubDate: 2026-01-22
+tags: ["pnpm", "npm", "node", "javascript", "package-manager"]
+---
+
+## The Problem
+
+Every application is created to tackle a problem. Whether it's a small issue or a big one, if it doesn't address a specific problem, then it's hard to understand why it was made. pnpm was developed to fix a particular issue caused by the old npm. To illustrate this problem, let me share a meme with you.
+
+![Node_modules folder meme](./node_modules-meme.webp)
+
+`node_modules` has many files, so it uses a lot of space. Now, imagine you're working on several projects, and each has its own `node_modules`. It's not entirely different; for example, if two projects use the same version of React for the frontend, you'll have React `node_modules` in two places, taking up space.
+
+That was just an example; in reality, there may be a lot of packages used in different projects, and every time you run `npm install`, a network call is made to download all of these again, even though you have one copy in another project. Wouldn’t it be great if we could somehow optimise this? And that’s where pnpm comes in!
+
+## The Solution
+
+You might already have an idea of how to solve this problem: instead of downloading a module for every project, why not reuse it? Of course, creating a copy wouldn't work because we would still be losing space. The solution is to place the required module in a centralised location, and all projects that need it use links that point to the main folder containing the module's actual code. This works just like pointers, which store the address and can reference a variable through the address.
+
+### How To Achieve This?
+
+pnpm achieves this using hard links and symbolic links.
+
+A hard link is an additional "name" for the same data on the disk. In Linux, every file is actually a link to an `inode` (the data's address). A hard link just creates a second pointer to that same address. If you delete the original file name, the data is not deleted. The data only disappears once all hard links to it are deleted. It cannot point to directories and cannot cross different partitions (because `inode` numbers are unique to each drive).
+
+```bash
+ln original.txt my_duplicate.txt # creating a hard link or original.txt
+```
+
+Even if you delete `original.txt`, you can still open `my_duplicate.txt` and see all your data. They are effectively the same file.
+
+A symbolic link is like a "redirect" sign. It contains the text of a path (e.g., `../my-files/photo.jpg`). If you delete the original file, the symlink "breaks" because the path it points to is gone. It can point to directories and can cross over to different hard drives/partitions.
+
+```bash
+ln -s original.txt my_shortcut.txt
+```
+
+If you move `original.txt` to a different folder, `my_shortcut.txt` will stop working.
+
+When you run `pnpm install express` The following steps take place in order
+
+### Step 1: The Global Store (The Source)
+
+When you request a package (e.g., `express`), pnpm first checks its **Global Store** (usually located at `~/.pnpm-store`).
+
+- If the package isn't there, pnpm downloads it once.
+- This store is "content-addressable," meaning it saves every unique file based on its content, not its name. `express@latest` `express@4.1.3` are unique, so both of them will be stored separately.
+
+### Step 2: Creating the Virtual Store (Hard Links)
+
+Instead of copying `express` into your project, pnpm creates a hidden folder: `node_modules/.pnpm`. This is called the **Virtual Store**.
+
+- **The Action:** pnpm creates **Hard Links** from the Global Store into this `.pnpm` folder.
+- **The Result:** The files now "exist" in your project folder, but they take up **zero extra disk space** because they point to the same data on the disk as the Global Store.
+
+### Step 3: Nesting Dependencies (Symlinks)
+
+Packages often have their own dependencies. For example, `express` needs `body-parser`.
+
+- **The Action:** Inside the `.pnpm` folder, pnpm creates **Symlinks** to connect packages to their own dependencies.
+- **The Result:** This creates a massive, nested web of symlinks that satisfies exactly what each package needs to "see" to function.
+
+### Step 4: The "Public" node_modules (Symlinks)
+
+Now that the "hidden" `.pnpm` The folder is ready; pnpm needs to make the packages you actually asked for visible to your code.
+
+- **The Action:** pnpm creates a **Symlink** in the root of your `node_modules` project that points to the package buried inside the `.pnpm` virtual store.
+- **Example:** `node_modules/express` —&gt; `.pnpm/express@4.18.2/node_modules/express`
+
+### Step 5: Resolution
+
+When you write `import express from 'express'` In your code:
+
+1. Node.js looks in `node_modules/express`.
+2. It follows the **Symlink** into the `.pnpm` virtual store.
+3. It finds the actual files, which are **hard-linked** to the Global Store.
+4. Your app runs perfectly, and your SSD stays empty.
+
+## The Problem of Phantom Dependencies
+
+In npm, dependencies are "hoisted" or flattened to the root of `node_modules`. If you install `express` and `express` depend on `debug`, you could technically `import 'debug'` use it in your code even if you didn't list it in your package.json.
+
+This looks like a feature, but it can cause some random bugs, if in future `express` decided to drop `debug` and use some other package like `better-debug` Now, suddenly, for some reason, you get an error `module not found` because you never explicitly installed that package.
+
+Because pnpm uses symlinks to only expose what is explicitly in your `package.json`, your code cannot access packages it doesn't officially depend on. This makes your builds much more predictable and secure.
+
+## Conclusion
+
+This is just two of many benefits of pnpm, if your project follows a monorepo structure, then using pnpm can help you track and manage dependencies in a lot better way compared to npm.
+
+It is significantly faster in automated environments like GitHub Actions or Jenkins. If a package has a "post-install" script (like building some C++ code or generating files), pnpm can cache the result of that script. Next time you install that package (even in a different project), pnpm just links the already-built result instead of running the slow build script again.
+
+Every file in the pnpm store is verified using a checksum. This ensures that the code on your disk exactly matches what was published to npm, protecting you from "disk corruption" or "supply chain" tampering where a local file might have been modified.
+
+## Thank you,
+
+X - [https://x.com/06_Shreehari](https://x.com/06_Shreehari)
+
+LinkedIn - [https://www.linkedin.com/in/shreehari-acharya/](https://www.linkedin.com/in/shreehari-acharya/)
+
+GitHub - [https://github.com/Shreehari-Acharya](https://github.com/Shreehari-Acharya)

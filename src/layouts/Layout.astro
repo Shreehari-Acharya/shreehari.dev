@@ -1,0 +1,75 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+}
+
+import { Font } from "astro:assets";
+import { ThemeToggle } from "../components/theme-toggle";
+import "../styles/global.css";
+
+const {
+  title = "Shreehari Acharya",
+  description = "Building thoughtful digital experiences with clean design and reliable code.",
+  image,
+  type = "website",
+} = Astro.props;
+
+const url = "https://shreehari.dev";
+const canonicalURL = new URL(Astro.url.pathname, url).href;
+const ogImage = image ?? `${url}/favicon.svg`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-heading" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@06_Shreehari" />
+    <meta name="twitter:image" content={ogImage} />
+    <script is:inline>
+      const THEME_STORAGE_KEY = "theme";
+
+      function getInitialTheme() {
+        try {
+          const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+          if (storedTheme === "light" || storedTheme === "dark")
+            return storedTheme;
+        } catch {
+          return "light";
+        }
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      document.documentElement.dataset.theme = getInitialTheme();
+    </script>
+  </head>
+  <body class="bg-background font-sans text-foreground">
+    <ThemeToggle client:load />
+    <slot />
+    <footer
+      class="mt-20 border-t border-border px-6 py-6 text-center text-xs text-muted-foreground"
+    >
+      &copy; {new Date().getFullYear()} Shreehari Acharya
+    </footer>
+  </body>
+</html>

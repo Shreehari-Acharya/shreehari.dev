@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = await getCollection("blog");
+
+posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Shreehari Acharya",
+  url: "https://shreehari.dev",
+  description:
+    "Building thoughtful digital experiences with clean design and reliable code.",
+};
+---
+
+<Layout
+  title="Blog | Shreehari Acharya"
+  description="Thoughts on software engineering, developer tooling, and building things."
+>
+  <main class="mx-auto min-h-svh max-w-4xl px-6 py-20">
+    <section>
+      <h1 class="text-2xl font-medium text-foreground">Blog</h1>
+      <p class="mt-1 text-sm text-muted-foreground">
+        Thoughts on software and building things.
+      </p>
+
+      <div class="mt-8 space-y-6">
+        {
+          posts.map((post) => (
+            <article>
+              <a
+                href={`/blogs/${post.id}`}
+                class="group flex items-start gap-4"
+              >
+                {post.data.cover ? (
+                  <Image
+                    src={post.data.cover}
+                    alt={post.data.coverAlt ?? ""}
+                    class="w-34 shrink-0 rounded-lg"
+                  />
+                ) : null}
+                <div>
+                  <time class="text-xs text-muted-foreground">
+                    {post.data.pubDate.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                  <h2 class="mt-1 text-base font-medium text-foreground transition-colors group-hover:text-muted-foreground">
+                    {post.data.title}
+                  </h2>
+                  <p class="mt-1 line-clamp-1 text-sm text-muted-foreground">
+                    {post.data.description}
+                  </p>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+</Layout>
