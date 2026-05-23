@@ -6,10 +6,37 @@ import { SocialLinks } from "../components/social-links";
 import { TechStackMarquee } from "../components/tech-stack-marquee";
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import profile from "../contents/profile.json";
+import social from "../contents/social.json";
+import { GitHubContributions } from "../components/github-contributions";
+
+const githubUsername = social.github.replace("https://github.com/", "");
+
+const { name, description, role, birthdate } = profile;
+
+const now = new Date();
+const birth = new Date(birthdate);
+const age =
+  now.getFullYear() -
+  birth.getFullYear() -
+  (now < new Date(now.getFullYear(), birth.getMonth(), birth.getDate())
+    ? 1
+    : 0);
 
 const allPosts = await getCollection("blog");
 allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const recentPosts = allPosts.slice(0, 3);
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name,
+  url: "https://shreehari.dev",
+  image: "https://shreehari.dev/favicon.svg",
+  sameAs: [social.github, social.linkedin, social.x],
+  jobTitle: role,
+  birthDate: birthdate,
+};
 ---
 
 <Layout>
@@ -20,20 +47,22 @@ const recentPosts = allPosts.slice(0, 3);
     <section class="w-full">
       <h1
         id="page-title"
-        class="font-heading text-4xl font-medium tracking-tight text-foreground sm:text-5xl"
+        class="font-heading text-3xl font-medium tracking-tight text-foreground sm:text-5xl"
       >
-        Shreehari R Acharya
+        {name}
       </h1>
-      <p class="text-sm text-muted-foreground font-medium">
-        20 &#8226 Software Engineer
+      <p class="text-xs sm:text-sm text-muted-foreground font-medium">
+        {age} &#8226 {role}
       </p>
-      <p class="mt-3 text-base text-start text-muted-foreground font-light">
-        Building scalable systems, developer tooling, Agentic and real-world
-        applications. I work with Go and Typescript.
+      <p
+        class="mt-3 text-sm sm:text-base text-start text-muted-foreground font-light"
+      >
+        {description}
       </p>
       <SocialLinks />
       <TechStackMarquee />
       <ExperienceList />
+      <GitHubContributions username={githubUsername} client:only="react" />
       <ProjectList client:load />
 
       <section class="mt-10 w-full text-left" aria-labelledby="blog-title">
@@ -47,27 +76,27 @@ const recentPosts = allPosts.slice(0, 3);
               <article>
                 <a
                   href={`/blogs/${post.id}`}
-                  class="group flex items-start gap-4"
+                  class="group flex items-center gap-4"
                 >
                   {post.data.cover ? (
                     <Image
                       src={post.data.cover}
                       alt={post.data.coverAlt ?? ""}
-                      class="w-34 shrink-0 rounded-lg"
+                      class="w-28 sm:w-34 shrink-0 rounded-lg"
                     />
                   ) : null}
                   <div>
-                    <time class="text-xs text-muted-foreground">
+                    <time class="text-[10px] text-muted-foreground">
                       {post.data.pubDate.toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
                       })}
                     </time>
-                    <h2 class="mt-1 text-base font-medium text-foreground transition-colors group-hover:text-muted-foreground">
+                    <h2 class="mt-1 text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-muted-foreground">
                       {post.data.title}
                     </h2>
-                    <p class="mt-1 line-clamp-1 text-sm text-muted-foreground">
+                    <p class="mt-1 line-clamp-1 text-xs sm:text-sm text-muted-foreground">
                       {post.data.description}
                     </p>
                   </div>
@@ -82,10 +111,15 @@ const recentPosts = allPosts.slice(0, 3);
             href="/blogs"
             class="text-xs text-muted-foreground underline-offset-2 hover:underline"
           >
-            Show all
+            View all posts
           </a>
         </div>
       </section>
     </section>
   </main>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(personSchema)}
+  />
 </Layout>
