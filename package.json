@@ -5,6 +5,11 @@
   "engines": {
     "node": ">=22.12.0"
   },
+  "pnpm": {
+    "overrides": {
+      "date-fns": "4.2.0"
+    }
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
