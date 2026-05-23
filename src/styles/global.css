@@ -34,6 +34,14 @@
   --border: #262626;
 }
 
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -50,6 +58,7 @@
   font-size: 1.25rem;
   font-weight: 500;
   color: var(--foreground);
+  scroll-margin-top: 5rem;
 }
 
 .prose-custom h3 {
@@ -58,6 +67,7 @@
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--foreground);
+  scroll-margin-top: 5rem;
 }
 
 .prose-custom p {

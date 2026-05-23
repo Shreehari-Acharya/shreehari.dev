@@ -1,0 +1,89 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const items = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{
+  items.length > 1 && (
+    <nav aria-label="Table of contents">
+      <h2 class="mb-3 text-xs font-medium tracking-wider text-muted-foreground uppercase">
+        On this page
+      </h2>
+      <ul class="space-y-1">
+        {items.map((h) => (
+          <li>
+            <a
+              href={`#${h.slug}`}
+              class="toc-link block border-l border-border py-0.5 pl-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              class:list={[{ "pl-6": h.depth === 3 }]}
+              aria-level={h.depth}
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+  .toc-link[aria-current="true"] {
+    color: var(--foreground);
+    border-left-color: var(--foreground);
+  }
+</style>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>(".toc-link");
+  if (links.length) {
+    const headings = Array.from(links)
+      .map((link) => {
+        const href = link.getAttribute("href");
+        if (!href || !href.startsWith("#")) return null;
+        return document.getElementById(href.slice(1));
+      })
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (headings.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort(
+              (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+            );
+
+          if (visible.length) {
+            const activeId = visible[0].target.id;
+
+            links.forEach((link) => {
+              const href = link.getAttribute("href");
+              if (href === `#${activeId}`) {
+                link.setAttribute("aria-current", "true");
+              } else {
+                link.removeAttribute("aria-current");
+              }
+            });
+          }
+        },
+        {
+          rootMargin: "-80px 0px -70% 0px",
+          threshold: 0,
+        },
+      );
+
+      headings.forEach((h) => observer.observe(h));
+    }
+  }
+</script>
