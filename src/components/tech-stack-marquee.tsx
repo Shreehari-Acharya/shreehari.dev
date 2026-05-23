@@ -45,7 +45,7 @@ export function TechStackMarquee() {
 
   return (
     <div
-      className="mt-8 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+      className="mt-8 w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
       aria-label="Tech stack"
     >
       <div className="flex w-max animate-marquee gap-3 motion-reduce:animate-none">
