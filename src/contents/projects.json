@@ -3,7 +3,6 @@
     {
       "name": "Sarvam AI Go SDK",
       "description": "An idiomatic Go client for the Sarvam AI API. Features Chat, Speech-to-Text, Text-to-Speech with streaming, Translation, Transliteration, Language Identification, Document Intelligence, and Batch Processing with automatic retries and exponential backoff.",
-
       "liveLink": "https://pkg.go.dev/github.com/Shreehari-Acharya/sarvamai-go",
       "githubLink": "https://github.com/Shreehari-Acharya/sarvamai-go",
       "stack": ["Go", "Sarvam AI API"]
@@ -11,7 +10,6 @@
     {
       "name": "Vayuu",
       "description": "A powerful, privacy-focused AI agent that runs on your local machine and uses Telegram as its interface. Execute commands, manage files, browse web, and more.",
-
       "liveLink": null,
       "githubLink": "https://github.com/Shreehari-Acharya/Vayuu",
       "stack": [
@@ -25,7 +23,6 @@
     {
       "name": "Arche",
       "description": "An AI-driven platform designed to help students study smarter through personalized learning paths, curated resources, smart notes, and active revision tools.",
-
       "liveLink": null,
       "githubLink": "https://github.com/Shreehari-Acharya/Arche",
       "stack": [
@@ -42,7 +39,6 @@
     {
       "name": "code-collab",
       "description": "A github codespace alternative, code and test in a cloud based IDE free from distractions.",
-
       "liveLink": null,
       "githubLink": "https://github.com/Shreehari-Acharya/code-collab",
       "stack": [
@@ -62,7 +58,6 @@
     {
       "name": "Infinity Comments",
       "description": "A minimalistic social media like X. Users can post and reply to comments in real time. With caching and optimizations for better performance.",
-
       "liveLink": null,
       "githubLink": "https://github.com/Shreehari-Acharya/Infinity-comments",
       "stack": [
@@ -80,7 +75,6 @@
     {
       "name": "ForceTrack - Codeforces Analytics Dashboard",
       "description": "An analytics dashboard that tracks Codeforces performance, contest history, and problem-solving activity of a set of codeforces handle.",
-
       "liveLink": null,
       "githubLink": "https://github.com/Shreehari-Acharya/ForceTrack",
       "stack": [
@@ -98,7 +92,6 @@
     {
       "name": "Ranked - DSA Battles",
       "description": "A competitive coding platform that matches users in real-time 1v1 DSA battles",
-
       "liveLink": null,
       "githubLink": "https://github.com/Shreehari-Acharya/Ranked",
       "stack": [
@@ -114,7 +107,6 @@
     {
       "name": "Dhidvara - AI Terminal",
       "description": "A warp like terminal that gives command suggestions and executes commands using AI.",
-
       "liveLink": null,
       "githubLink": "https://github.com/Shreehari-Acharya/Dhidvara",
       "stack": [
