@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import profile from "../../contents/profile.json";
 
 const posts = await getCollection("blog");
 
@@ -10,22 +11,22 @@ posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Shreehari Acharya",
+  name: profile.name,
   url: "https://shreehari.dev",
-  description:
-    "Building thoughtful digital experiences with clean design and reliable code.",
+  description: profile.description,
 };
 ---
 
 <Layout
-  title="Blog | Shreehari Acharya"
+  title={`Blog | ${profile.name}`}
   description="Thoughts on software engineering, developer tooling, and building things."
 >
   <main class="mx-auto min-h-svh max-w-4xl px-6 py-20">
     <section>
-      <h1 class="text-2xl font-medium text-foreground">Blog</h1>
-      <p class="mt-1 text-sm text-muted-foreground">
-        Thoughts on software and building things.
+      <h1 class="text-3xl font-medium text-foreground">Blogs</h1>
+      <p class="mt-2 text-sm text-muted-foreground">
+        Thoughts on software engineering, developer tooling, and building
+        things.
       </p>
 
       <div class="mt-8 space-y-6">
@@ -65,5 +66,9 @@ const websiteSchema = {
       </div>
     </section>
   </main>
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(websiteSchema)}
+  />
 </Layout>

@@ -4,22 +4,27 @@ export interface Props {
   description?: string;
   image?: string;
   type?: "website" | "article";
+  pubDate?: string;
+  tags?: string[];
 }
 
 import { Font } from "astro:assets";
 import { ThemeToggle } from "../components/theme-toggle";
 import "../styles/global.css";
+import profile from "../contents/profile.json";
 
 const {
-  title = "Shreehari Acharya",
-  description = "Building thoughtful digital experiences with clean design and reliable code.",
+  title = profile.name,
+  description = profile.description,
   image,
   type = "website",
+  pubDate,
+  tags,
 } = Astro.props;
 
-const url = "https://shreehari.dev";
-const canonicalURL = new URL(Astro.url.pathname, url).href;
-const ogImage = image ?? `${url}/favicon.svg`;
+const siteUrl = "https://shreehari.dev";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = image ?? `${siteUrl}/ogImage.png`;
 ---
 
 <!doctype html>
@@ -27,8 +32,17 @@ const ogImage = image ?? `${url}/favicon.svg`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={profile.name}
+      href={`${siteUrl}/rss.xml`}
+    />
     <meta name="generator" content={Astro.generator} />
     <Font cssVariable="--font-sans" preload />
     <Font cssVariable="--font-heading" />
@@ -40,7 +54,17 @@ const ogImage = image ?? `${url}/favicon.svg`;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={profile.name} />
+    {
+      pubDate ? (
+        <meta property="article:published_time" content={pubDate} />
+      ) : null
+    }
+    {tags?.map((tag) => <meta property="article:tag" content={tag} />)}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:site" content="@06_Shreehari" />
     <meta name="twitter:image" content={ogImage} />
     <script is:inline>
@@ -67,9 +91,10 @@ const ogImage = image ?? `${url}/favicon.svg`;
     <ThemeToggle client:load />
     <slot />
     <footer
-      class="mt-20 border-t border-border px-6 py-6 text-center text-xs text-muted-foreground"
+      class="border-t border-border px-6 py-4 text-center text-xs text-muted-foreground"
     >
-      &copy; {new Date().getFullYear()} Shreehari Acharya
+      &copy; {new Date().getFullYear()}
+      {profile.name}
     </footer>
   </body>
 </html>
