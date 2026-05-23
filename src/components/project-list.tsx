@@ -51,7 +51,8 @@ export function ProjectList() {
             return (
               <article
                 key={name}
-                className="rounded-lg border border-border p-4 transition-colors"
+                onClick={() => toggleExpand(index)}
+                className="cursor-pointer rounded-lg border border-border p-4 transition-colors"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0 flex-1">
@@ -60,7 +61,8 @@ export function ProjectList() {
                         href={href!}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-sm font-medium text-foreground underline-offset-2 hover:underline"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-sm font-medium text-blue-400 underline-offset-2 hover:underline"
                       >
                         {name}
                       </a>
@@ -71,10 +73,8 @@ export function ProjectList() {
                     )}
 
                     <p
-                      className={`mt-1 text-sm leading-relaxed text-muted-foreground ${
-                        isExpanded
-                          ? ""
-                          : "line-clamp-2 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
+                      className={`mt-1 text-xs sm:text-sm leading-relaxed text-muted-foreground ${
+                        isExpanded ? "" : "line-clamp-2"
                       }`}
                     >
                       {description}
@@ -96,7 +96,10 @@ export function ProjectList() {
 
                   <button
                     type="button"
-                    onClick={() => toggleExpand(index)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleExpand(index);
+                    }}
                     className="mt-0.5 shrink-0 cursor-pointer text-muted-foreground transition-colors hover:text-foreground"
                     aria-label={isExpanded ? "Show less" : "Show more"}
                     aria-expanded={isExpanded}
