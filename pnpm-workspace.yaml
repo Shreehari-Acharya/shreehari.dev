@@ -1,0 +1,5 @@
+packages:
+  - .
+
+overrides:
+  date-fns: 4.2.0
